@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="{% static 'todo/base.css' %}" rel="stylesheet" />
+    <script type="module"
+            src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule
+            src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      {% if post_list %}
+        <table class="todo_table">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Title</th>
+              <th>Text</th>
+              <th>Date</th>
+              <th>Update</th>
+              <th>Delete?</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for post in post_list %}
+              <tr class="{% if forloop.counter|divisibleby:2 %}dark_grey{% endif %}">
+                <td>{{ forloop.counter }}</td>
+                <td>{{ post.title }}</td>
+                <td>{{ post.text }}</td>
+                <td>{{ post.date|date:"Y-m-d G:i" }}</td>
+                <td>
+                  <a href="{% url 'todo:update' post.id %}">
+                    <ion-icon size="large" name="refresh-outline"></ion-icon>
+                  </button>
+                </a>
+              </td>
+              <td>
+                <form method="post" action="{% url "todo:delete" post.id %}">
+                  {% csrf_token %}
+                  <button class="delete_button" type="submit">
+                    <ion-icon size="large" name="trash-outline"></ion-icon>
+                  </button>
+                </form>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <br>
+      <a href="{% url "todo:create" %}">
+        <ion-icon size="large" name="create-outline"></ion-icon>
+      </a>
+    {% else %}
+      <h1>Sorry, but looks like the list is empty!</h1>
+      <a href="{% url "todo:create" %}">
+        <ion-icon size="large" name="create-outline"></ion-icon>
+      </a>
+    {% endif %}
+  </div>
+</body>
+</html>

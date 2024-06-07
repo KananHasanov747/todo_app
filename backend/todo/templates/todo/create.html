@@ -1,0 +1,16 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="{% static 'todo/create.css' %}" rel="stylesheet" />
+    <title></title>
+  </head>
+  <body>
+    <form class="create_form" method="post">
+      {% csrf_token %} {{ form.as_div }}
+      <button type="submit">Save</button>
+    </form>
+  </body>
+</html>

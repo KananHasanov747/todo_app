@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+body {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  font-family: "Titillium Web", sans-serif;
+}
+
+a {
+  color: inherit;
+}
+
+.container {
+  position: absolute;
+}
+
+/* grey color for every even row */
+.dark_grey {
+  background-color: grey;
+}
+
+.todo_table {
+  font-size: 24px;
+  font-weight: 400;
+  font-style: normal;
+  border-collapse: collapse; /* to collapse cells together w/o gaps */
+  border: 1px solid black;
+  border-radius: 50rem;
+}
+.todo_table thead {
+  background-color: green;
+}
+
+.update_button,
+.delete_button {
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+}
